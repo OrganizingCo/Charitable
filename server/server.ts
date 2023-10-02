@@ -2,8 +2,8 @@ import express, {Request, Response} from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
 import cookieParser from 'cookie-parser';
+import {charityRouter} from './routes/charityRoute';
 import { ServerError } from '../types';
-
 
 dotenv.config();
 const app = express();
@@ -14,6 +14,7 @@ const PORT = process.env.PORT || 4000;
 
 //routes
 app.use('/api')
+app.use('/api/charity', charityRouter)
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(path.resolve(), "dist"))); 
