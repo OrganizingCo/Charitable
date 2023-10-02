@@ -1,48 +1,24 @@
--- -- Drop the imagepost table and any constraints if they exist
--- DROP TABLE IF EXISTS public.imagepost;
+-- CREATE TABLE public.users (
+--   "user_id" serial PRIMARY KEY,
+--   "username" varchar NOT NULL,
+--   "password" varchar NOT NULL,
+--   "date_created" varchar DEFAULT CURRENT_DATE
+-- ) WITH (
+--   OIDS=FALSE
+-- );
 
--- -- Drop the textpost table and any constraints if they exist
--- DROP TABLE IF EXISTS public.textpost;
+-- CREATE TABLE  public.charities (
+--   "campaign_id" serial PRIMARY KEY,
+--   "user_id" serial NOT NULL REFERENCES public.users(user_id),
+--   "campaign_name" varchar NOT NULL,
+--   "campaign_url" varchar NOT NULL,
+--   "campaign_description" varchar,
+--   "campaign_type" varchar NOT NULL, 
+--   "date_created" varchar DEFAULT CURRENT_DATE
+-- ) WITH (
+--   OIDS=FALSE
+-- );
 
--- -- Drop the users table and any constraints if they exist
--- DROP TABLE IF EXISTS public.users;
+-- ALTER TABLE public.charities ADD CONSTRAINT "users_fk0" FOREIGN KEY ("user_id") REFERENCES  public.users("user_id");
 
-CREATE TABLE public.users (
-  "user_id" serial NOT NULL,
-  "email" varchar NOT NULL,
-  "password" varchar NOT NULL,
-  "hash_id" varchar,
-  "display_name" varchar,
-  "interests" varchar,
-  "age" integer,
-  "location" varchar,
-  "education" varchar,
-  "job" varchar,
-  CONSTRAINT "user_pk" PRIMARY KEY ("user_id")
-) WITH (
-  OIDS=FALSE
-);
-
-CREATE TABLE  public.textPost (
-  "post_id" serial NOT NULL,
-  "user_id" serial NOT NULL REFERENCES public.users(user_id),
-  "content" varchar NOT NULL,
-  CONSTRAINT "textPost_pk" PRIMARY KEY ("post_id")
-) WITH (
-  OIDS=FALSE
-);
-
-CREATE TABLE public.imagePost (
-  "post_id" serial NOT NULL,
-  "user_id" serial NOT NULL REFERENCES public.users(user_id),
-  "image_data" bytea NOT NULL,
-  "caption" varchar,
-  CONSTRAINT "imagePost_pk" PRIMARY KEY ("post_id")
-) WITH (
-    OIDS=FALSE
-);
-
-ALTER TABLE public.textPost ADD CONSTRAINT "users_fk0" FOREIGN KEY ("user_id") REFERENCES  public.users("user_id");
-ALTER TABLE public.imagePost ADD CONSTRAINT "users_fk1" FOREIGN KEY ("user_id") REFERENCES  public.users("user_id");
-
--- psql -d postgres://dulmbgqe:L0ZqiYkMx2H9ApdNWK-exIK8uPr-fGfu@batyr.db.elephantsql.com/dulmbgqe  -f database.sql
+-- psql -d PG_URI  -f database.sql
