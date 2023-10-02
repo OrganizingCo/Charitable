@@ -13,7 +13,7 @@
 
 ## Product Description
 
-Charitable streamlines a charity splash page for you to share to others to help bulster support for charities you believe in
+Charitable streamlines a charity splash page for you to share to others to help bolster support for charities you believe in
 
 # Features
 
