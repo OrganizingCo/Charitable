@@ -8,10 +8,10 @@ const userController = {
     next: NextFunction
   ): Promise<void> => {
     try {
-      type reqType = { user: string; password: string };
-      const { user, password }: reqType = req.body;
-      const passwordQuery = `SELECT user_id, username, password FROM public.users WHERE username = '${user}';`;
-      const passwordResult = await pool.query(passwordQuery);
+      type reqType = { username: string; password: string };
+      const { username, password }: reqType = req.body;
+      const passwordQuery = 'SELECT user_id, username, password FROM public.users WHERE username = $1;';
+      const passwordResult = await pool.query(passwordQuery, [username]);
       // passwordResult returns rows WHERE username = ${user}
       if (passwordResult.rows[0].password === password) {
         return next(); 

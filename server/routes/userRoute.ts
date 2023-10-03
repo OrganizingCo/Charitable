@@ -6,7 +6,7 @@ import {userController} from "../controllers/userController"
 const userRoute = express.Router();
 
 userRoute.post('/login', userController.login, (_req: Request, res: Response ) => {
-  return res.status(200)
+  return res.status(200).send()
 })
 
 

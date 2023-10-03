@@ -14,7 +14,6 @@ app.use(cookieParser());
 const PORT = process.env.PORT || 4000;
 
 //routes
-// app.use('/api')
 // app.use('/api/charity', charityRouter)
 app.use('/api/auth', userRoute)
 
