@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "vitest",
-    "dev-frontend": "cross-env NODE_ENV=development vite",
+    "dev-frontend": "cross-env NODE_ENV=development vite --host",
     "dev-backend": "nodemon --watch './**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm --no-warnings' server/server.ts",
     "dev": "concurrently \"npm run dev-frontend\" \"npm run dev-backend\"",
     "build": "cross-env NODE_ENV=production vite build",
@@ -16,6 +16,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.11",
     "@mui/material": "^5.14.11",
     "@types/bcryptjs": "^2.4.4",
     "bcryptjs": "^2.4.3",
