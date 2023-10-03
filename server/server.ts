@@ -2,7 +2,8 @@ import express, {Request, Response} from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
 import cookieParser from 'cookie-parser';
-import {charityRouter} from './routes/charityRoute';
+//import {charityRouter} from './routes/charityRoute';
+import {userRoute} from './routes/userRoute'
 import { ServerError } from '../types';
 
 dotenv.config();
@@ -13,8 +14,8 @@ app.use(cookieParser());
 const PORT = process.env.PORT || 4000;
 
 //routes
-app.use('/api')
-app.use('/api/charity', charityRouter)
+// app.use('/api/charity', charityRouter)
+app.use('/api/auth', userRoute)
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(path.resolve(), "dist"))); 
@@ -42,3 +43,4 @@ if (process.env.NODE_ENV === "production") {
     console.log(`app is listening on port: ${PORT}...`);
   });
   
+export default app; 
