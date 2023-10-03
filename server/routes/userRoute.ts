@@ -3,6 +3,11 @@ import {Request, Response} from 'express';
 import {userController} from "../controllers/userController"
 
 
-const router = express.Router();
+const userRoute = express.Router();
 
-router.get('/', )
+userRoute.post('/login', userController.login, (_req: Request, res: Response ) => {
+  return res.status(200).send()
+})
+
+
+export {userRoute}

@@ -1,9 +1,8 @@
 import dotenv from 'dotenv';
 import pg from 'pg';
 
-dotenv.config();
-
 const { Pool } = pg;
+dotenv.config();
 
 // Create a new connection pool using PG_URL environment variable.
 const pool = new Pool({
@@ -17,4 +16,4 @@ export const query = (
   callback: (error: Error, result: unknown) => void
 ) => pool.query(text, params, callback);
 
-export default { pool };
+export { pool };
