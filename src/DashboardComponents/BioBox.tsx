@@ -1,8 +1,17 @@
 
-const BioBox = () => {
-  
-    return (
-      <h1>This is BioBox</h1>
+const BioBox = ({userData}) => {
+
+  const cause = () => {
+    
+  }
+
+  return (
+      <div id="biobox">
+
+        <h1>{userData.username}</h1>
+        <p>Bio: {userData.bio} </p>
+        <p>Causes: Hold My Poodle</p>
+      </div>
     )
   }
   

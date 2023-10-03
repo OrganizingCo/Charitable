@@ -1,7 +1,9 @@
 const CharityBox = () => {
   
   return (
-    <h1>This is CharityBox</h1>
+    <div id="charityBox">
+      <h1>This is CharityBox</h1>
+    </div>
   )
 }
 

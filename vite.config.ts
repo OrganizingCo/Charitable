@@ -8,13 +8,12 @@ export default defineConfig({
   server: {
     port: 3000,
   proxy: {
-    "/*" : "http://localhost:4000"
+    "/api" : "http://localhost:4000",
   }
 },
 test: {
-  globals: true,
   environment: 'jsdom',
-  setupFiles: './__tests__/setup.js',
-  css: true,
-},
+  setupFiles: ['./__test__/setup.ts'],
+  globals: true
+  }
 })
