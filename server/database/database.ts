@@ -17,4 +17,4 @@ export const query = (
   callback: (error: Error, result: unknown) => void
 ) => pool.query(text, params, callback);
 
-export default { pool };
+export { pool };
