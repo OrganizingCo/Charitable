@@ -2,8 +2,10 @@ import BioBox from "./BioBox";
 import CharityBoard from "./CharityBoard";
 import { useState, useEffect } from 'react';
 
-const SharePage = () => {
+
+const SharePage = ({page, setPage}) => {
   const [userData, setUserData] = useState();
+  setPage('sharepage')
   // make request to get user info - including bio and causes
   const fetchUser = async () => {
     try {
@@ -23,10 +25,9 @@ const SharePage = () => {
   return (
     //leaving it as dashboard to keep the consistent styling
     <div id="dashboard">
-    <h1>This is share page</h1>
     <div id="content">
         <BioBox userData={userData}/>
-        <CharityBoard userData={userData}/>
+        <CharityBoard userData={userData} page={page}/>
         <div id='right'></div>
       </div>
     </div>

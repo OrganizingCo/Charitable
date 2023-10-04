@@ -1,16 +1,18 @@
 import CharityBox from "./CharityBox";
 
-const TypeBox = ({number}) => {
-  // we need to get all of the associated charities for that type
+const TypeBox = ({number, page}) => {
+  // we need to get all of the associated charities for the users
 
-  // and render a charity box for each
+  
 
+  // and render a type box for each
+  
 
   return (
     <div id="typeBox">
       <h1>This is Type</h1>
       {number.map(() => {
-        return <CharityBox />
+        return <CharityBox page={page}/>
       })}
     </div>
   )

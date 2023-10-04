@@ -3,8 +3,9 @@ import BioBox from "./BioBox";
 import CharityBoard from "./CharityBoard";
 import { useState, useEffect } from 'react';
 
-const DashBoard = () => {
+const DashBoard = ({page, setPage}) => {
   const [userData, setUserData] = useState();
+  setPage('dashboard');
   // make request to get user info - including bio and causes
   const fetchUser = async () => {
     try {
@@ -29,7 +30,7 @@ const DashBoard = () => {
       </div>
       <div id="content">
         <BioBox userData={userData}/>
-        <CharityBoard userData={userData}/>
+        <CharityBoard userData={userData} page={page}/>
         <div id='right'></div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import { IconButton } from '@mui/material';
 
 //router.delete(':id', )
 
-const CharityBox = () => {
+const CharityBox = ({page}) => {
   
   const handleDelete = async (e) => {
     // const id = e.target.**.id;
@@ -28,12 +28,12 @@ const CharityBox = () => {
   return (
     <div id="charityBox">
       <h1>This is CharityBox</h1>
-      <IconButton onClick={(e) => {
+      {page==='dashboard' && <IconButton onClick={(e) => {
         console.log('e target', e);
-        handleDelete(target.e.value)
+        handleDelete(e.target.value)
        }} > 
         <DeleteIcon />
-      </IconButton>
+      </IconButton>}
     </div>
   )
 }
