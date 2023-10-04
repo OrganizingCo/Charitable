@@ -95,7 +95,7 @@ const CharityBoard = ({ page }) => {
       </div>
       <div id="charityboard">
       {charities.map((charity) => (
-        <CharityBox  page={page} charity={charity} />
+        <CharityBox  page={page} charity={charity} fetch={fetchCharities}/>
       ))}
     </div>
     </div>

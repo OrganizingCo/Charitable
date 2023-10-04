@@ -9,8 +9,6 @@ const BioBox = () => {
       const response = await fetch('/api/auth/user');
       const data = await response.json();
       setUserData(data)
-      // this may not console log anything cuz of how set works
-      console.log('userData in dashboard: ', userData)
     } catch (err) {
       console.log('Error fetching user: ', err)
     }

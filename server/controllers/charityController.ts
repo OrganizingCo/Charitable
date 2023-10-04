@@ -59,10 +59,13 @@ const charityController = {
     next: NextFunction
   ): Promise<void> => {
     try {
+      console.log('deleting Charity')
       const { id } = req.body; 
-      const deleteCharityQuery = `DELETE FROM charity WHERE campaign_id = ${id}`;
-      await pool.query(deleteCharityQuery);
-      return next(); 
+      const deleteCharityQuery = `DELETE FROM public.charities WHERE campaign_id = $1`;
+      const input = [ id ]
+      await pool.query(deleteCharityQuery, input);
+      console.log('queried the delete');
+      return next();
     } catch (err) {
       return next(err);
     }

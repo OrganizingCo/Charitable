@@ -15,6 +15,15 @@ charityRouter.get(
 );
 
 charityRouter.post(
+  '/delete', 
+  // userController.checkCookie,
+  charityController.deleteCharity,
+  (_req: Request, res: Response) => {
+    return res.status(200);
+  }
+);
+
+charityRouter.post(
   '/',
   userController.checkCookie,
   charityController.addCharity,
@@ -23,13 +32,6 @@ charityRouter.post(
   }
 );
 
-charityRouter.post(
-  '/delete', 
-  userController.checkCookie,
-  charityController.deleteCharity,
-  (_req: Request, res: Response) => {
-    return res.status(200);
-  }
-);
+
 
 export { charityRouter };
