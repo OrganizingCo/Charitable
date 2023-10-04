@@ -8,7 +8,7 @@
  *  - DELETE : deletes a charity instance row
  */
 
-//import pool from "../server/database/database";
+// import pool from "../server/database/database";
 // import fs from 'fs';
 // import path from 'path';
 // import request from 'supertest';
@@ -25,49 +25,3 @@
 //   });
 // });
 
-
-// describe('/markets', () => {
-//   describe('GET', () => {
-//     it('responds with 200 status and application/json content type', () => {
-//       return request(server)
-//         .get('/markets')
-//         .expect('Content-Type', /json/)
-//         .expect(200);
-//     });
-
-//     // For this test, you'll need to inspect the body of the response and
-//     // ensure it contains the markets list. Check the markets.dev.json file
-//     // in the dev database to get an idea of what shape you're expecting.
-//     it('markets from "DB" json are in body of response', async () => {
-//       const response = await request(server).get('/markets');
-
-//       expect(response.body).toBeInstanceOf(Array);
-//       response.body.forEach((e) => {
-//         expect(e).toHaveProperty('location');
-//         expect(e).toHaveProperty('cards');
-//       });
-//     });
-//   });
-
-//   describe('PUT', () => {
-//     const newMarket = [{ location: 'texas', cards: 0 }];
-//     it('responds with 200 status and application/json content type', () => {
-//       return request(server)
-//         .put('/markets')
-//         .expect('Content-Type', /json/)
-//         .expect(200)
-//         .send(newMarket);
-//     });
-
-//     it('responds with the updated market list', async () => {
-//       const response = await request(server).put('/markets').send(newMarket);
-//       expect(response.body).toEqual(newMarket);
-//     });
-
-//     it('responds to invalid request with 400 status and error message in body', async () => {
-//       const response = await request(server).put('/markets');
-//       expect(400);
-//       expect(response.body).toHaveProperty('error');
-//     });
-//   });
-// });

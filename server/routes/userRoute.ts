@@ -1,13 +1,24 @@
 import express from 'express';
-import {Request, Response} from 'express';
-import {userController} from "../controllers/userController"
-
+import { Request, Response } from 'express';
+import { userController } from '../controllers/userController';
 
 const userRoute = express.Router();
 
-userRoute.post('/login', userController.login, (_req: Request, res: Response ) => {
-  return res.status(200).send()
-})
+userRoute.post(
+  '/login',
+  userController.login,
+  userController.setCookie,
+  (_req: Request, res: Response) => {
+    return res.status(200).send();
+  }
+);
 
+userRoute.post(
+  '/signup',
+  userController.signup, userController.setCookie,
+  (_req: Request, res: Response) => {
+    return res.status(200).send();
+  }
+);
 
-export {userRoute}
+export { userRoute };

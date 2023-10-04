@@ -12,19 +12,53 @@
 import fs from 'fs';
 import path from 'path';
 import request from 'supertest';
+import { pool } from '../server/database/database';
 import app from '../server/server';
 import { describe, test, expect, it } from 'vitest';
 
 describe('User Authentication Tests', () => {
   describe('/login', () => {
-      it('should login a user and return a cookie', async () => {
+      it('should login a user', async () => {
         const testCredentials={
-            username: 'test',
+            username: 'AuthTest6',
             password: 'password'
         };
         const response = await request(app).post('/api/auth/login').send(testCredentials)
         expect(response.status).toBe(200)
-        //expect(response.header['set-cookie']).toBeDefined();
+      });
+      it('should return an error when the password /username is incorrect', async () => {
+        const testCredentials={
+            username: 'AuthTest6',
+            password: 'wrongPassword'
+        };
+        const response = await request(app).post('/api/auth/login').send(testCredentials)
+        expect(response.status).toBe(401)
+      });
+
+      it('should return a cookie', async () => {
+        const testCredentials={
+            username: 'AuthTest6',
+            password: 'password'
+        };
+        const response = await request(app).post('/api/auth/login').send(testCredentials)
+        expect(response.status).toBe(200)
+        expect(response.header['set-cookie']).toBeDefined();
       });
     }); 
+
+
+  describe('/signup', () => {
+    it('should write a new user into the DB', async () => {
+      const signupCredentials = {
+        username: 'AuthTest21',
+        password: 'password'
+      }
+      const response = await request(app).post('/api/auth/signup').send(signupCredentials)
+      expect(response.status).toBe(200)
+      expect(response.header['set-cookie']).toBeDefined();
+      const createQuery = `DELETE FROM users
+      WHERE username = 'AuthTest21'`;
+      await pool.query(createQuery);
+    })
+  })
 });
