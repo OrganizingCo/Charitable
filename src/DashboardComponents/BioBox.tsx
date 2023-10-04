@@ -1,8 +1,16 @@
+const BioBox = ({userData}) => {
 
-const BioBox = () => {
-  
-    return (
-      <h1>This is BioBox</h1>
+  // const render = userData.types.map( (cause) => {
+  //   return <p> {cause}</p>
+  // });
+
+  return (
+      <div id="biobox">
+        {/* <h1>{userData.username}</h1>
+        <p>Bio: {userData.bio} </p>
+        <p>Causes: {render}</p> */}
+        Biobox
+      </div>
     )
   }
   

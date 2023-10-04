@@ -6,7 +6,7 @@ import { expect, it } from 'vitest';
 it('renders navbar on the page correctly', () => {
   render(<Dashboard />);
 
-  const navbar = screen.getByTestId('navbar');
+  const navbar = screen.getByText('This is navbar');
 
   expect(navbar).toBeVisible();
 });
@@ -14,7 +14,7 @@ it('renders navbar on the page correctly', () => {
 it('renders biobox on the page correctly', () => {
   render(<Dashboard />);
 
-  const biobox = screen.getByTestId('biobox');
+  const biobox = screen.getByText('This is BioBox');
 
   expect(biobox).toBeVisible();
 });
@@ -22,7 +22,7 @@ it('renders biobox on the page correctly', () => {
 it('renders charityboard on the page correctly', () => {
   render(<Dashboard />);
 
-  const charityboard = screen.getByTestId('charityboard');
+  const charityboard = screen.getByText('This is Charityboard');
 
   expect(charityboard).toBeVisible();
 });
