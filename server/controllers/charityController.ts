@@ -46,7 +46,6 @@ const charityController = {
       ];
       const addCharityQueryResponse = await pool.query(addCharityQuery, addCharityInputs);
       res.locals.addedCharity = addCharityQueryResponse.rows;
-      console.log('addedCharity', res.locals.addedCharity);
       return next(); 
     } catch (err) {
       return next(err);
@@ -59,12 +58,10 @@ const charityController = {
     next: NextFunction
   ): Promise<void> => {
     try {
-      console.log('deleting Charity')
       const { id } = req.body; 
       const deleteCharityQuery = `DELETE FROM public.charities WHERE campaign_id = $1`;
       const input = [ id ]
       await pool.query(deleteCharityQuery, input);
-      console.log('queried the delete');
       return next();
     } catch (err) {
       return next(err);

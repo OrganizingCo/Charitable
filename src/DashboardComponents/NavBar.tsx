@@ -1,26 +1,6 @@
 import { AppBar, Toolbar, Button, Box, TextField, Modal } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-/**const [campaign, setCampaign] = useState({
-    name: '',
-    type: '',
-    url: '',
-    goal: '',
-    description: ''
-});
-const handleChange = (key) => (e) => {
-    setCampaign(prevState => ({
-        ...prevState,
-        [key]: e.target.value
-    }));
-};
-
-// Usage
-<TextField label="Campaign Name" onChange={handleChange('name')} />
-*/
-
 
 const NavBar = () => {
   const navigate = useNavigate();

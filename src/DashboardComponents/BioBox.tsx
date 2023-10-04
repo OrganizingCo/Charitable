@@ -21,7 +21,8 @@ const BioBox = () => {
 
   return (
       <div id="biobox">
-        <h1>{userData.username}</h1>
+        <h1>{userData.username} Le</h1>
+        <b>Bio:</b>
         <p>{userData.bio}</p>
       </div>
     )

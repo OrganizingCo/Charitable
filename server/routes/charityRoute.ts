@@ -19,7 +19,7 @@ charityRouter.post(
   // userController.checkCookie,
   charityController.deleteCharity,
   (_req: Request, res: Response) => {
-    return res.status(200);
+    return res.status(200).send();
   }
 );
 

@@ -3,32 +3,25 @@ import { IconButton } from '@mui/material';
 
 
 
-const CharityBox = ({ page, charity, fetch }) => {
-
-  // const reFetch = async () => {
-  //   try {
-  //     const response = await fetch('/api/charity/');
-  //     const data = await response.json();
-  //   } catch (err) {
-  //     console.log('Error fetching charities: ', err)
-  //   }
-  // }
+const CharityBox = ({ page, charity, refresh, setRefresh }) => {
 
   const handleDelete = async (id) => {
-    console.log('deleting', id)
     try {
-      console.log('ID', id);
-      const response = await fetch ('/api/charity/delete',{
+      await fetch('/api/charity/delete', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id : id
+          id: id
         })
-      })
-      console.log('response: ', response)
-      // fetch(); 
+      },
+      );
+      if (refresh === false) {
+        setRefresh(true)
+      } else {
+        setRefresh(false)
+      }
     } catch (err) {
       console.log('Error deleting charity: ', err)
     }

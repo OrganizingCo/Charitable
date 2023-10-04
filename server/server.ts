@@ -35,7 +35,6 @@ if (process.env.NODE_ENV === "production") {
   });
   
   app.use((err: ServerError, _req: Request, res: Response) => {
-    console.log('in the default error handler')
     const defaultErr: ServerError = {
       log: "Express error handler caught unknown middleware error",
       status: 500,

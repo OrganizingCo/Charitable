@@ -13,7 +13,6 @@ const userController = {
     try {
       const { username, password, bio }: reqType = req.body;
       if (username === undefined || password === undefined) {
-        console.log('missing username or password');
         return next({
           log: `Error occurred in userController signup. Username or password undefined`,
           status: 400,
@@ -73,7 +72,6 @@ const userController = {
         return next();
       }
     } catch (err) {
-      console.log(err);
       return next({
         log: `Error occurred in userController login ${err}`,
         status: 500,

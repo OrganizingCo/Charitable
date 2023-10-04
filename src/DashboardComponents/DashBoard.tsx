@@ -1,7 +1,6 @@
 import NavBar from "./NavBar";
 import BioBox from "./BioBox";
 import CharityBoard from "./CharityBoard";
-import { useState, useEffect } from 'react';
 
 const DashBoard = ({page, setPage}) => {
   setPage('dashboard');

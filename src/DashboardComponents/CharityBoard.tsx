@@ -1,6 +1,5 @@
 import CharityBox from "./CharityBox"
 import { Button, Box, TextField, Modal } from '@mui/material';
-import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 const CharityBoard = ({ page }) => {
@@ -10,7 +9,7 @@ const CharityBoard = ({ page }) => {
   const [type, setType] = useState<string | undefined>();
   const [url, setUrl] = useState<string | undefined>();
   const [description, setDescription] = useState<string | undefined>();
-  // const [refresh, setRefresh] = useState(false); 
+  const [refresh, setRefresh] = useState(false); 
   // recieves userData from props
   
   const fetchCharities = async () => {
@@ -48,7 +47,7 @@ const CharityBoard = ({ page }) => {
 
   useEffect(() => {
     fetchCharities();
-  }, []) 
+  }, [refresh]) 
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -95,7 +94,7 @@ const CharityBoard = ({ page }) => {
       </div>
       <div id="charityboard">
       {charities.map((charity) => (
-        <CharityBox  page={page} charity={charity} fetch={fetchCharities}/>
+        <CharityBox  page={page} charity={charity} refresh={refresh} setRefresh={setRefresh}/>
       ))}
     </div>
     </div>
