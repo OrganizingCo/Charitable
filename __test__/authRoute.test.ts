@@ -9,12 +9,10 @@
  *  - POST : we can look for a cookie in browser
  */
 
-import fs from 'fs';
-import path from 'path';
 import request from 'supertest';
 import { pool } from '../server/database/database';
 import app from '../server/server';
-import { describe, test, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 describe('User Authentication Tests', () => {
   describe('/login', () => {
@@ -61,4 +59,20 @@ describe('User Authentication Tests', () => {
       await pool.query(createQuery);
     })
   })
+
+  describe('/logout', () => {
+    it('should delete the session cookie', async () => {
+      const signinCredentials = {
+        username: 'AuthTest6',
+        password: 'password'
+      }
+       await request(app).post('/api/auth/login').send(signinCredentials)
+      const logout = await request(app).get('/api/auth/logout')
+      expect(logout.status).toBe(200)
+      expect(logout.headers['set-cookie']).not.toContain('ssid');;
+    })
+  })
+
+
+
 });
