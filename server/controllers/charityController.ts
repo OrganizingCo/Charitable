@@ -14,7 +14,7 @@ const charityController = {
   ): Promise<void> => {
     try {
       const user_id = req.cookies.ssid;
-      const queryCharity = `SELECT campaign_name, campaign_url, campaign_description, campaign_type FROM public.charities WHERE user_id = $1`;
+      const queryCharity = `SELECT campaign_id, campaign_name, campaign_url, campaign_description, campaign_type FROM public.charities WHERE user_id = $1`;
       const charities = await pool.query(queryCharity, [user_id]);
       res.locals.userCharities = charities.rows;
       return next();
@@ -29,8 +29,6 @@ const charityController = {
     next: NextFunction
   ): Promise<void> => {
     try {
-      // req.body will include 
-      // "user_id" serial NOT NULL REFERENCES public.users(user_id), campaign_name, campaign_url, campaign_description, campaign_type,
       const {
         campaign_name,
         campaign_url,
@@ -54,12 +52,22 @@ const charityController = {
       return next(err);
     }
   },
-};
 
-/**
- * Request to get all the user data, which gets all the types
- * Then get the charities information in one batch
- * User1 has 2 types, MockUser2 has 1 type
- */
+  deleteCharity: async (
+    req: Request,
+    _res: Response,
+    next: NextFunction
+  ): Promise<void> => {
+    try {
+      const { id } = req.body; 
+      const deleteCharityQuery = `DELETE FROM charity WHERE campaign_id = ${id}`;
+      await pool.query(deleteCharityQuery);
+      return next(); 
+    } catch (err) {
+      return next(err);
+    }
+  },
+
+};
 
 export { charityController };
