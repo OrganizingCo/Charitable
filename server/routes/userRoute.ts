@@ -4,6 +4,14 @@ import { userController } from '../controllers/userController';
 
 const userRoute = express.Router();
 
+
+userRoute.get(
+  '/user', userController.checkCookie,
+  userController.info,
+  (_req: Request, res: Response) => {
+    return res.status(200).json(res.locals.userInfo);
+  }
+)
 userRoute.post(
   '/login',
   userController.login,
@@ -12,6 +20,7 @@ userRoute.post(
     return res.status(200).send();
   }
 );
+
 
 userRoute.post(
   '/signup',

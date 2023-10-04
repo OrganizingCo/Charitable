@@ -1,15 +1,30 @@
-const BioBox = ({userData}) => {
+import { useState, useEffect } from 'react';
 
-  // const render = userData.types.map( (cause) => {
-  //   return <p> {cause}</p>
-  // });
+
+const BioBox = () => {
+  const [userData, setUserData] = useState('');
+  
+  const fetchUser = async () => {
+    try {
+      const response = await fetch('/api/auth/user');
+      const data = await response.json();
+      setUserData(data)
+      // this may not console log anything cuz of how set works
+      console.log('userData in dashboard: ', userData)
+    } catch (err) {
+      console.log('Error fetching user: ', err)
+    }
+  }
+
+  // will fetch data on initial render
+  useEffect(() => {
+    fetchUser();
+  }, [])
 
   return (
       <div id="biobox">
-        {/* <h1>{userData.username}</h1>
-        <p>Bio: {userData.bio} </p>
-        <p>Causes: {render}</p> */}
-        Biobox
+        <h1>{userData.username}</h1>
+        <p>{userData.bio}</p>
       </div>
     )
   }

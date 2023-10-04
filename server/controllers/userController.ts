@@ -55,8 +55,9 @@ const userController = {
     try {
       const { username, password }: reqType = req.body;
       const passwordQuery =
-        'SELECT user_id, username, password FROM public.users WHERE username = $1;';
+        'SELECT user_id, username, password FROM public.users WHERE username = $1';
       const passwordResult = await pool.query(passwordQuery, [username]);
+      console.log('after password result', passwordResult)
       const user = passwordResult.rows[0];
       if (passwordResult.rows.length === 0) {
         return next({ error: 'Invalid Username or Password' });
@@ -73,6 +74,7 @@ const userController = {
         return next();
       }
     } catch (err) {
+      console.log(err);
       return next({
         log: `Error occurred in userController login ${err}`,
         status: 500,
@@ -117,7 +119,21 @@ const userController = {
       });
     }
   },
-
+  info: async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> => {
+    try {
+      const user_id = req.cookies.ssid;
+      const queryBio = `SELECT username, bio FROM public.users WHERE user_id = $1`;
+      const bio = await pool.query(queryBio, [user_id]);
+      res.locals.userInfo = bio.rows[0]; 
+      return next();
+    } catch(err) {
+      return next(err);
+    }
+  },
 };
 
 export { userController };

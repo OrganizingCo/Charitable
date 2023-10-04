@@ -14,8 +14,8 @@ const App = () =>  {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<DashBoard page={page} setPage={setPage}/>}></Route>
-          <Route path="/signin" element={<SignIn />}></Route>
+          <Route path="/dashboard" element={<DashBoard page={page} setPage={setPage}/>}></Route>
+          <Route path="/" element={<SignIn />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/share" element={<SharePage page={page} setPage={setPage}/>}></Route>
         </Routes>

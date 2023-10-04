@@ -5,17 +5,23 @@ import cookieParser from 'cookie-parser';
 import {charityRouter} from './routes/charityRoute';
 import {userRoute} from './routes/userRoute'
 import { ServerError } from '../types';
+import cors from 'cors';
 
 dotenv.config();
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); 
 app.use(cookieParser());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true
+}
+));
 const PORT = process.env.PORT || 4000;
 
 //routes
-app.use('/api/charity', charityRouter)
 app.use('/api/auth', userRoute)
+app.use('/api/charity', charityRouter)
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(path.resolve(), "dist"))); 

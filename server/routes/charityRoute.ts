@@ -4,8 +4,8 @@ import {charityController} from "../controllers/charityController"
 import { userController } from '../controllers/userController';
 
 const charityRouter = express.Router();
-
-charityRouter.get('/', userController.checkCookie, charityController.getCharities, (_req: Request, res: Response) => {
+// userController.checkCookie,
+charityRouter.get('/', charityController.getCharities, (_req: Request, res: Response) => {
   return res.status(200).json(res.locals.userCharities);
 })
 
